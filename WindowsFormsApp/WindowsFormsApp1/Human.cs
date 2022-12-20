@@ -9,38 +9,44 @@ namespace WindowsFormsAppUrupaBohdan
     public enum Nation { Ukranian, French, Polish, American, British };
     public class Human
     {
-        private string __name;
-        private string __surname;
-        private string __photo;
-        private int __age;
-        private Nation __nation;
-        private Adress_Class __adress;
+        private string _name;
+        private string _surname;
+        private string _email;
+        private string _photo;
+        private int _age;
+        private Nation _nation;
+        private Adress_Class _adress;
 
 
         public Human()
         {
-            this.__name = "My_name";
-            this.__surname = "My_surname";
-            //this.__photo = ".."
-            this.__age = 18;
-            this.__nation = Nation.Ukranian;
-            this.__adress = new Adress_Class();
+            this._name = "My_name";
+            this._surname = "My_surname";
+            this._email = "myemail@humail.hum";
+            //this._photo = "..";
+            this._age = 18;
+            this._nation = Nation.Ukranian;
+            this._adress = new Adress_Class();
         }
-        public Human(string name, string surname, int age, Nation nation, Adress_Class adress)
+        public Human(string name, string surname, string email, string photo, int age, Nation nation, Adress_Class adress)
         {
-            this.__name = name;
-            this.__surname = surname;
-            this.__age = age;
-            this.__nation = nation;
-            this.__adress = adress;
+            this._name = name;
+            this._surname = surname;
+            this._email = email;
+            this._photo = photo;
+            this._age = age;
+            this._nation = nation;
+            this._adress = adress;
         }
         public Human(Human H)
         {
-            this.__name = H.__name;
-            this.__surname = H.__surname;
-            this.__age = H.__age;
-            this.__nation = H.__nation;
-            this.__adress = H.__adress;
+            this._name = H._name;
+            this._surname = H._surname;
+            this._email = H._email;
+            this._photo = H._photo;
+            this._age = H._age;
+            this._nation = H._nation;
+            this._adress = H._adress;
         }
 
         //  +-------function-------+
@@ -66,28 +72,38 @@ namespace WindowsFormsAppUrupaBohdan
         //  +-------get/set-------+
         public string Name
         {
-            get { return __name; }
-            set { __name = value; }
+            get { return _name; }
+            set { _name = value; }
         }
         public string Surname
         {
-            get { return __surname; }
-            set { __surname = value; }
+            get { return _surname; }
+            set { _surname = value; }
+        }
+        public string Email
+        {
+            get { return _email; }
+            set { _email = value; }
+        }
+        public string Photo
+        {
+            get { return _photo; }
+            set { _photo = value; }
         }
         public int Age
         {
-            get { return __age; }
-            set { __age = value; }
+            get { return _age; }
+            set { _age = value; }
         }
         public Nation Nation
         {
-            get { return __nation; }
-            set { __nation = value; }
+            get { return _nation; }
+            set { _nation = value; }
         }
         public Adress_Class Adress
         {
-            get { return __adress; }
-            set { __adress = value; }
+            get { return _adress; }
+            set { _adress = value; }
         }
     }
 }

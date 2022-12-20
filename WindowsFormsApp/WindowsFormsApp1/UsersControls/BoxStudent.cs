@@ -35,6 +35,8 @@ namespace WindowsFormsAppUrupaBohdan.UsersControls
             this._teacher = teacher;
             this._student = student;
             InitializeComponent();
+
+            this.pictureBox1.Image = _form1.convertBase64ToImage(_student.Photo);
             this.labelSurnameStudent.Text = _student.Surname;
             this.labelNameStudent.Text = _student.Name;
             this.labelAmountTermPaper.Text = "Кільк. курсових: " + _student.LTermPaper.Count.ToString();

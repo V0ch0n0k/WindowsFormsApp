@@ -19,9 +19,9 @@ namespace WindowsFormsAppUrupaBohdan
             this._listTermPaper = new List<TermPaper_Class>();
         }
         public Student(
-            string name, string surname, int age, Nation nation, Adress_Class adress,
+            string name, string surname, string email, string photo, int age, Nation nation, Adress_Class adress,
             int group, int scholarship)
-            : base(name, surname, age, nation, adress)
+            : base(name, surname, email, photo, age, nation, adress)
         {
             this._group = group;
             this._scholarship = scholarship;
@@ -36,16 +36,16 @@ namespace WindowsFormsAppUrupaBohdan
             this._scholarship = scholarship;
             this._listTermPaper = new List<TermPaper_Class>();
         }
-        public Student(Student S) : base(S.Name, S.Surname, S.Age,  S.Nation, S.Adress)
+        public Student(Student S) : base(S.Name, S.Surname, S.Email, S.Photo , S.Age,  S.Nation, S.Adress)
         {
             this._group = S.Group;
             this._scholarship = S.Scholarship;
         }
 
         //  +-------function-------+
-        public void addTermPaper(TermPaper_Class coursework)
+        public void addTermPaper(TermPaper_Class termPaper)
         {
-            _listTermPaper.Add(coursework);
+            _listTermPaper.Add(termPaper);
         }
         public void clearTermPaper()
         {

@@ -3,10 +3,17 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+/*using System;
+using System.Drawing;
+using System.Windows.Forms;
+using System.IO;
+using System.Drawing.Imaging;*/
 
 namespace WindowsFormsAppUrupaBohdan
 {
@@ -40,6 +47,21 @@ namespace WindowsFormsAppUrupaBohdan
             
             return lowerBound.AddDays(r.Next(range));
         }
+        public string convertImageToBase64String(Image img, System.Drawing.Imaging.ImageFormat format)
+        {
+            using (MemoryStream ms = new MemoryStream())
+            {
+                img.Save(ms, format);
+                byte[] imageBytes = ms.ToArray();
+                return Convert.ToBase64String(imageBytes);
+            }
+        }
+        public Image convertBase64ToImage(string imageToBase64String)
+        {
+            byte[] byteImage = Convert.FromBase64String(imageToBase64String);
+            using (var ms = new MemoryStream(byteImage, 0, byteImage.Length))
+                { return Image.FromStream(ms, true); }
+        }
         private Human GenerationRandomHuman()
         {
             string[] arr_name = { "Богдан", "Ігор", "Артем", "Михайло", "Дар'я", "Анна", "Марія", "Олександра", "Лелуш" };
@@ -48,18 +70,25 @@ namespace WindowsFormsAppUrupaBohdan
 
             string name = arr_name[r.Next(0,8)];
             string surname = arr_surname[r.Next(0,10)];
+            string email = r.Next(0, 99999).ToString() + "@humail.hum";
+
+            
+            string pathImage = Application.StartupPath + string.Format(@"\Img\img{0}.jpg", r.Next(1, 8));
+            Image img = Image.FromFile(pathImage);
+            string photo = convertImageToBase64String(img, ImageFormat.Jpeg);
+
             int age = r.Next(20, 40);
             Nation nation = (Nation)r.Next(4);
             Adress_Class adress = new Adress_Class("Україна", "Херсон", arr_street[r.Next(0,8)], r.Next(1, 90));
 
-            return (new Human(name, surname, age, nation, adress));
+            return (new Human(name, surname, email, photo, age, nation, adress));
         }
         private Teacher GenerationRandomTeacher()
         {
-            string[] arr_discipline = { "Програмування", "Фізика", "Математика", "Українська мова", "Англійська мова", "Загальна методика","Мат. аналіз" };
+            //string[] arr_discipline = { "Програмування", "Фізика", "Математика", "Українська мова", "Англійська мова", "Загальна методика","Мат. аналіз" };
 
-
-            string discipline = arr_discipline[r.Next(0,7)];
+            //Nation nation = (Nation)r.Next(4);
+            Discipline discipline = (Discipline)r.Next(7);
             int salary = r.Next(1500, 3500);
 
             return (new Teacher(GenerationRandomHuman(), discipline, salary));

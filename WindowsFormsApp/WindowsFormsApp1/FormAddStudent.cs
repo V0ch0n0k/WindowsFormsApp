@@ -26,6 +26,11 @@ namespace WindowsFormsAppUrupaBohdan
         {
             string name = textBox_name.Text;
             string surname = textBox_surname.Text;
+
+            string email = "111.com";
+            Image img = pictureBox1.Image; if(img == null) img = Image.FromFile(Application.StartupPath + @"\Img\default.jpg");
+            string photo = _form1.convertImageToBase64String(img, System.Drawing.Imaging.ImageFormat.Jpeg);
+
             int age = 0; int.TryParse(textBox_age.Text, out age);
             Nation nation; Enum.TryParse(textBox_nation.Text, out nation);
             string country = textBox_country.Text;
@@ -35,16 +40,26 @@ namespace WindowsFormsAppUrupaBohdan
 
             int group = 0; int.TryParse(textBox_group.Text, out group);
             int scholarship = 0; int.TryParse(textBox_scholarship.Text, out scholarship);
-
+            
             if (
                 string.IsNullOrWhiteSpace(name) ||
                 string.IsNullOrWhiteSpace(surname))
             { labelMessage.Text = "Не коректні данні"; return; }
 
-            _boxTeacher.Teacher.LStudents.Add(new Student(name, surname, age, nation, new Adress_Class(country, city, street, house), group, scholarship));
+            _boxTeacher.Teacher.LStudents.Add(new Student(name, surname, email, photo, age, nation, new Adress_Class(country, city, street, house), group, scholarship));
 
             _form1.showStudents(_boxTeacher.Teacher);
             labelMessage.Text = "";
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            openFileDialog1.ShowDialog();
+
+            string pathImg = openFileDialog1.FileName;
+            if (!string.IsNullOrWhiteSpace(pathImg))
+            { pictureBox1.Image = Image.FromFile(pathImg); }
         }
     }
 }

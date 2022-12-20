@@ -19,24 +19,27 @@ namespace WindowsFormsAppUrupaBohdan.UsersControls
             get { return _teacher; }
             set { this._teacher = value; }
         }
+
         public BoxTeacher(Form1 _form1)
         {
             this._form1 = _form1;
             this._teacher = new Teacher();
             InitializeComponent();
         }
+
         public BoxTeacher(Teacher teacher, Form1 _form1)
         {
             this._form1 = _form1;
             this._teacher = teacher;
             
             InitializeComponent();
+
+            this.pictureBox1.Image = _form1.convertBase64ToImage(_teacher.Photo);
             this.labelSurnameTeach.Text = _teacher.Surname;
             this.labelNameTeach.Text = _teacher.Name;
-            this.labelDiscipline.Text = _teacher.Discipline;
+            this.labelDiscipline.Text = _teacher.Discipline.ToString();
             this.labelAmountStudents.Text = "Студентів: " + _teacher.LStudents.Count.ToString();
         }
-
 
         private void buttonDeleteTeacher_Click(object sender, EventArgs e)
         {
@@ -54,7 +57,5 @@ namespace WindowsFormsAppUrupaBohdan.UsersControls
         {
             _form1.showStudents(_teacher);
         }
-
-
     }
 }
