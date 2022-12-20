@@ -184,8 +184,10 @@ namespace WindowsFormsAppUrupaBohdan
         }
         private void buttonTabularData_Click(object sender, EventArgs e)
         {
-            if (_form2 != null)
-            { _form2.UpdateContentForm2(); }
+            if (this.MdiChildren.Any())
+            {
+                _form2.UpdateContentForm2(); 
+            }
             else
             {
                 _form2 = new Form2(_teacherList, this);
@@ -195,8 +197,10 @@ namespace WindowsFormsAppUrupaBohdan
 
         private void flowLayoutPanelPeople_Paint(object sender, PaintEventArgs e)
         {
-            if (_form2 != null)
-            { _form2.UpdateContentForm2(); }
+            if (this.MdiChildren.Any())
+            {
+                _form2.UpdateContentForm2(); 
+            }
         }
     }
 }
